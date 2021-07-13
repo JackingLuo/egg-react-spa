@@ -1,18 +1,11 @@
 # egg-react-webpack-boilerplate
 
-基于 Egg + AntD + Webpack 框架的 Admin 骨架项目, 文档请见: [Egg + React 解决方案](https://www.yuque.com/easy-team/egg-react)
-
-
+基于 Egg + AntD + Webpack + ReactSPA + SSR 骨架项目
 
 ## 文档
 
-- https://www.yuque.com/easy-team/egg-react
+- https://www.yuque.com/easy-team/egg-react/online
 - https://zhuanlan.zhihu.com/easywebpack
-
-## 特性
-
-![npm start启动](https://github.com/easy-team/egg-react-webpack-boilerplate/blob/easy-admin/docs/images/easy-react-admin.jpg)
-
 
 ## 依赖
 
@@ -22,10 +15,9 @@
 - [egg-webpack](https://github.com/easy-team/egg-webpack) ^4.x.x
 - [egg-webpack-react](https://github.com/easy-team/egg-webpack-react) ^2.0.0
 
-
 ## 使用
 
-#### 安装cli
+#### 安装 cli
 
 ```bash
 npm install easywebpack-cli -g
@@ -37,7 +29,6 @@ npm install easywebpack-cli -g
 npm install
 ```
 
-
 #### 本地开发启动应用
 
 ```bash
@@ -46,35 +37,45 @@ npm run dev
 
 应用访问: http://127.0.0.1:7001
 
+#### 模拟发布模式
 
-![npm start启动](https://github.com/easy-team/egg-react-webpack-boilerplate/blob/master/docs/images/webpack.png)
-
-#### 发布模式启动应用
-
-- 首先在本地或者ci构建好jsbundle文件
+- 首先在本地或者 ci 构建好 jsbundle 文件
 
 ```bash
-npm run build 
+npm run build
 ```
 
 - 然后,启动应用
 
 ```bash
-npm start 
+npm start
 ```
 
+#### 生产部署
 
-#### 项目构建
+- 1.首先在本地或者 ci 构建好 jsbundle 文件
 
 ```bash
-// 直接运行(编译文件全部在内存里面,本地开发使用)
-npm start
-
-// 编译文件到磁盘打包使用(发布正式环境)
-npm run build 或者 easy build
-
+//会生成一个public文件夹和在config文件夹中生成一个manifest.json文件
+easy clean all
+easy build prod
 ```
 
-## License
+- 2.将整个项目用命令打包成 zip 上传到服务器（中间层）
 
-[MIT](LICENSE)
+```bash
+easy zip  //需要 npm install --production
+或者
+easy zip --deps --nodejs
+```
+
+- 3.启动项目
+
+```bash
+npm start （对应scripts命令：egg-scripts start --port 7001 --workers 4）
+
+或
+
+// 服务后台运行，退出命令行，保证进程不退出
+npm run backend（对应scripts命令：nohup egg-scripts start --port 7001 --workers 4 &）
+```
