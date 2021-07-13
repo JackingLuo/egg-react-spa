@@ -8,7 +8,11 @@ module.exports = app => {
     async render(ctx) {
       const list = ctx.service.article.getList();
       if (ctx.query.mode === 'ssr') {
-        await ctx.render('admin.js', { url: ctx.url, list });
+        //使用localhost::7001/?mode=ssr 测试
+        await ctx.render('admin.js', {
+          url: ctx.url,
+          list,
+        });
       } else {
         await ctx.renderClient('admin.js', {
           url: ctx.url,
