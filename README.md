@@ -67,6 +67,8 @@ easy build prod
 easy zip  //需要 npm install --production
 或者
 easy zip --deps --nodejs
+
+//找到这个zip放到服务器上面即可
 ```
 
 - 3.启动项目
