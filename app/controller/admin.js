@@ -11,12 +11,12 @@ module.exports = app => {
         //使用localhost::7001/?mode=ssr 测试
         await ctx.render('admin.js', {
           url: ctx.url,
-          list,
+          list
         });
       } else {
         await ctx.renderClient('admin.js', {
           url: ctx.url,
-          list: list,
+          list: list
         });
       }
     }
